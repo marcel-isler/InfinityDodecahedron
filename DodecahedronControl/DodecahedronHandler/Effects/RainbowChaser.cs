@@ -15,9 +15,9 @@ namespace DodecahedronHandler.Effects
         {
             _currentStep = 0;
             _startPixel = 0;
-            if (config.ContainsKey("MaxSteps"))
+            if (config.TryGetValue("MaxSteps", out string value))
             {
-                if (!int.TryParse(config["MaxSteps"], out _maxSteps))
+                if (!int.TryParse(value, out _maxSteps))
                 {
                     _maxSteps = int.MaxValue;
                 }
@@ -27,9 +27,9 @@ namespace DodecahedronHandler.Effects
                 _maxSteps = int.MaxValue;
             }
 
-            if (config.ContainsKey("RainbowLength"))
+            if (config.TryGetValue("RainbowLength", out string value1))
             {
-                if (!int.TryParse(config["RainbowLength"], out _rainbowLength))
+                if (!int.TryParse(value1, out _rainbowLength))
                 {
                     _rainbowLength = 32;
                 }

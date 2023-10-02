@@ -18,9 +18,9 @@ namespace DodecahedronHandler.Effects
             _startPixel = 0;
             _chaserColor = new Rgb();
 
-            if (config.ContainsKey("MaxSteps"))
+            if (config.TryGetValue("MaxSteps", out string value1))
             {
-                if (!int.TryParse(config["MaxSteps"], out _maxSteps))
+                if (!int.TryParse(value1, out _maxSteps))
                 {
                     _maxSteps = int.MaxValue;
                 }
@@ -30,9 +30,9 @@ namespace DodecahedronHandler.Effects
                 _maxSteps = int.MaxValue;
             }
 
-            if (config.ContainsKey("ChaserLength"))
+            if (config.TryGetValue("ChaserLength", out string value2))
             {
-                if (!int.TryParse(config["ChaserLength"], out _chaserLength))
+                if (!int.TryParse(value2, out _chaserLength))
                 {
                     _chaserLength = 32;
                 }
@@ -42,9 +42,9 @@ namespace DodecahedronHandler.Effects
                 _chaserLength = 32;
             }
 
-            if (config.ContainsKey("ColorValue"))
+            if (config.TryGetValue("ColorValue", out string value))
             {
-                string[] sparkleComponent = config["ColorValue"].Split(',');
+                string[] sparkleComponent = value.Split(',');
                 if (sparkleComponent.Length == 3)
                 {
                     _chaserColor.R = int.Parse(sparkleComponent[0]);

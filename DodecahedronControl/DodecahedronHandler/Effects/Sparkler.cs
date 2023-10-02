@@ -18,9 +18,9 @@ namespace DodecahedronHandler.Effects
             _currentStep = 0;
             _sparkleColor = new Rgb();
 
-            if (config.ContainsKey("MaxSteps"))
+            if (config.TryGetValue("MaxSteps", out string value))
             {
-                if (!int.TryParse(config["MaxSteps"], out _maxSteps))
+                if (!int.TryParse(value, out _maxSteps))
                 {
                     _maxSteps = int.MaxValue;
                 }
@@ -30,9 +30,9 @@ namespace DodecahedronHandler.Effects
                 _maxSteps = int.MaxValue;
             }
 
-            if (config.ContainsKey("SparklerPercent"))
+            if (config.TryGetValue("SparklerPercent", out string value1))
             {
-                if (!double.TryParse(config["SparklerPercent"], out _sparklerPercent))
+                if (!double.TryParse(value1, out _sparklerPercent))
                 {
                     _sparklerPercent = 1.0;
                 }
@@ -42,9 +42,9 @@ namespace DodecahedronHandler.Effects
                 _sparklerPercent = 1.0;
             }
 
-            if (config.ContainsKey("ColorValue"))
+            if (config.TryGetValue("ColorValue", out string value2))
             {
-                string[] sparkleComponent = config["ColorValue"].Split(',');
+                string[] sparkleComponent = value2.Split(',');
                 if (sparkleComponent.Length == 3)
                 {
                     _sparkleColor.R = int.Parse(sparkleComponent[0]);
