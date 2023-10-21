@@ -33,6 +33,29 @@ namespace DodecahedronHandler
                 LedValues[pixelLocation].B = Math.Max(LedValues[pixelLocation].B, color.B);
             }
         }
+        
+        public void ForcePixel(int pixelLocation, Rgb color)
+        {
+            if (pixelLocation < NumberOfLeds)
+            {
+                // Use the higher RGB values
+                LedValues[pixelLocation].R = color.R;
+                LedValues[pixelLocation].G = color.G;
+                LedValues[pixelLocation].B = color.B;
+            }
+        }
+
+        public void GetPixel(int pixelLocation, ref Rgb color)
+        {
+            if (color == null)
+            {
+                throw new ArgumentNullException(
+                    "Can't call LedBuffer.GetPixel with a null Rgb value.  initialize one first.");
+            }
+            color.R = LedValues[pixelLocation].R;
+            color.B = LedValues[pixelLocation].B;
+            color.G = LedValues[pixelLocation].G;
+        }
 
         public void ClearPixel(int pixelLocation)
         {
