@@ -57,6 +57,7 @@ namespace DodecahedronHandler.Effects
             _currentStep++;
 
             bool keepGoing = _currentStep > _maxSteps;
+            _currentStep = 0;
             return keepGoing;
         }
     }
