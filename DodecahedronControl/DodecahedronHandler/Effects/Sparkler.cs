@@ -61,6 +61,10 @@ namespace DodecahedronHandler.Effects
                 _randomColor = true;
             }
         }
+        public string GetName()
+        {
+            return $"Sparkler Random={_randomColor}";
+        }
 
         public bool NextStep(LedBuffer ledBuffer)
         {

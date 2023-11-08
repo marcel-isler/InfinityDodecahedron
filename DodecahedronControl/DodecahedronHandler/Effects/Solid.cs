@@ -51,6 +51,10 @@ namespace DodecahedronHandler.Effects
                 _chaserColor.B = 255;
             }
         }
+        public string GetName()
+        {
+            return $"Solid R={_chaserColor.R} G={_chaserColor.G} B={_chaserColor.B}";
+        }
 
         public bool NextStep(LedBuffer ledBuffer)
         {

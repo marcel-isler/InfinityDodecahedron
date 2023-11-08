@@ -46,6 +46,10 @@ namespace DodecahedronHandler.Effects
 
             _stepSize = 1.0 / ((double)_cycleSteps / 2.0);
         }
+        public string GetName()
+        {
+            return $"Pulse in {_cycleSteps} steps";
+        }
 
         public bool NextStep(LedBuffer ledBuffer)
         {

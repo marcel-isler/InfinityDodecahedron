@@ -3,5 +3,6 @@
     public interface ILedEffect
     {
         bool NextStep(LedBuffer ledBuffer);
+        string GetName();
     }
 }

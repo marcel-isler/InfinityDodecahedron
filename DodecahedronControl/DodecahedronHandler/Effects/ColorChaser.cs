@@ -66,6 +66,10 @@ namespace DodecahedronHandler.Effects
             }
         }
 
+        public string GetName()
+        {
+            return $"ColorChaser R={_chaserColor.R} G={_chaserColor.G} B={_chaserColor.B}";
+        }
         public bool NextStep(LedBuffer ledBuffer)
         {
             int step = _startPixel;
