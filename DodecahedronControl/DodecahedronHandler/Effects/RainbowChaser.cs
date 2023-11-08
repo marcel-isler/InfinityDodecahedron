@@ -39,6 +39,10 @@ namespace DodecahedronHandler.Effects
                 _rainbowLength = 32;
             }
         }
+        public string GetName()
+        {
+            return $"Rainbow Chaser of length {_rainbowLength}";
+        }
 
         public bool NextStep(LedBuffer ledBuffer)
         {

@@ -55,14 +55,18 @@ namespace DodecahedronControl
             effectSet.Add(ConsoleKey.D3, sparkler3);
             ILedEffect colorChaser = new ColorChaser(new Dictionary<string, string> { { "MaxSteps", "3200" }, { "ChaserLength", "2" }, { "ColorValue", "255,255,255" } });
             effectSet.Add(ConsoleKey.C, colorChaser);
+            ILedEffect solidViolet = new Solid(new Dictionary<string, string> { { "MaxSteps", "3200" }, { "ColorValue", " 30,22,46" } });
+            effectSet.Add(ConsoleKey.D7, solidViolet); 
             ILedEffect solidRed = new Solid(new Dictionary<string, string> { { "MaxSteps", "3200" }, { "ColorValue", "255,0,0" } });
             effectSet.Add(ConsoleKey.D8, solidRed);
             ILedEffect solidGreen = new Solid(new Dictionary<string, string> { { "MaxSteps", "3200" }, { "ColorValue", "0,255,0" } });
             effectSet.Add(ConsoleKey.D9, solidGreen);
             ILedEffect solidBlue = new Solid(new Dictionary<string, string> { { "MaxSteps", "3200" }, { "ColorValue", "0,0,255" } });
             effectSet.Add(ConsoleKey.D0, solidBlue);
-            ILedEffect pulse = new Pulse(new Dictionary<string, string> { { "CycleSteps", (2000 / 50).ToString()}, { "Cycles", "2000" } });
-            effectSet.Add(ConsoleKey.P, pulse); 
+            ILedEffect pulse = new Pulse(new Dictionary<string, string> { { "CycleSteps", (2000 / 50).ToString() }, { "Cycles", "2000" } });
+            effectSet.Add(ConsoleKey.P, pulse);
+            ILedEffect cycle = new Cycle(new Dictionary<string, string> { { "CycleSteps", (300).ToString() } });
+            effectSet.Add(ConsoleKey.A, cycle);
             //            ILedEffect sparkler = new Sparkler(new Dictionary<string, string> { { "MaxSteps", "400" }, { "SparklerPercent", "5" } });
 
             // add the effect to the list of effects that run
@@ -93,7 +97,7 @@ namespace DodecahedronControl
                         if (effectSet.TryGetValue(struckKey.Key, out ILedEffect effect))
                         {
                             Console.WriteLine();
-                            Console.WriteLine($"Adding {effect.GetType().Name}");
+                            Console.WriteLine($"Adding {effect.GetName()}");
                             Effects[_effectId++] = effect;
                         }
                         else
@@ -111,7 +115,7 @@ namespace DodecahedronControl
             Console.WriteLine("Press a key to add an effect:");
             foreach (KeyValuePair<ConsoleKey, ILedEffect> entry in effectSet)
             {
-                Console.WriteLine($"   {entry.Key}: {entry.Value.GetType().Name}");
+                Console.WriteLine($"   {entry.Key}: {entry.Value.GetName()}");
             }
 
             Console.WriteLine("<space>: clears all effects");
@@ -133,7 +137,7 @@ namespace DodecahedronControl
                         if (effectIsDone)
                         {
                             EffectsToRemove.Add(effectEntry.Key);
-                            Console.WriteLine($"Finished {effectEntry.Value.GetType().Name}");
+                            Console.WriteLine($"Finished {effectEntry.Value.GetName()}");
                         }
                     }
                     // send the current frame to the FadeCandy controller
